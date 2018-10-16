@@ -1,0 +1,11 @@
+{% extends 'page.html.twig' %}
+
+{% block content %}
+	<div>
+		<h2>{{ copy.identify[_lang] }}</h2>
+		{% for caller in callers %}
+			<p><a href="/call/{{ caller.id }}">{{ caller.name }}</a></p>
+		{% endfor %}
+		<p><a href="/en">EN</a> &middot; <a href="/es">ES</a> &middot; <a href="/pt">PT</a></p>
+	</div>
+{% endblock %}

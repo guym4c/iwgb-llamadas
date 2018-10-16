@@ -1,0 +1,74 @@
+// ---- VARS ----
+
+$md-red: #e74c3c;
+$md-green: #2ecc71;
+$iwgb-red: #c0392b;
+$iwgb-green: #27ae60;
+
+body {
+	background-color: $iwgb-red;
+	color: #fff;
+	font-family: "Source Code Pro", Verdana, sans-serif;
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	font-weight: 700;
+}
+
+select {
+	background: none;
+	border: none;
+	border-bottom: 3px solid #fff;
+	font-family: inherit !important;
+	font-size: inherit;
+	color: #fff;
+}
+
+.content-pad {
+	display: flex;
+	justify-content: center;
+	padding: 10px;
+	width: 100%;
+}
+
+.content-pad > div {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+}
+
+.nav {
+	background-color: #fff;
+	color: #000;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.nav > div {
+	display: flex;
+	justify-content: center;
+	align-items: end;
+
+	h1 {
+		display: inline;
+		margin: 0 10px;
+	}
+
+	img {
+		height: 50px;
+	}
+}
+
+.button {
+	padding: 10px;
+	text-decoration: none;
+	color: $iwgb-red;
+	background-color: #fff;
+	border-radius: 3px;
+}
+
+ul {
+	list-style: none;
+}

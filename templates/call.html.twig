@@ -1,0 +1,34 @@
+{% extends 'page.html.twig' %}
+
+{% block content %}
+	<div>
+		<a href="tel:+44{{ callee.number }}" class="button">{{ copy.call[_lang] }} {{ callee.name }}</a>
+		<div>
+			<p>{{ callee.company }}</p>
+			<p><a href="tel:+44{{ callee.number }}">+44{{ callee.number }}</a></p>
+		</div>
+		{% if calls is defined %}
+			<h2>{{ copy.previous[_lang] }}:</h2>
+			<ul>
+				{% for call in calls %}
+					<li>
+						{{ call.timestamp|nicedate }}: 
+						{% if not call.answered %}
+							{{ copy['no-answer'][_lang] }}
+						{% else %}
+							{{ copy.answered[_lang] }}
+						{% endif %}
+						{% if call.notes is defined %}
+							({{ call.notes }})
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		<p><a href="https://iwgb.typeform.com/to/Ezd31B?callee={{ callee.id }}&campaign={{ campaign }}&caller={{ caller.id }}" class="button">{{ copy.next[_lang] }}</a></p>
+		{% if script is defined %}
+			{{ script|md }}
+		{% endif %}
+		<p><a href="/en">EN</a> &middot; <a href="/es">ES</a> &middot; <a href="/pt">PT</a></p>
+	</div>
+{% endblock %}
