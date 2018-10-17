@@ -4,13 +4,7 @@
     <form action="login" method="post">
         <input type="hidden" name="callback" value="{{ _get.callback }}">
         <p><input type="password" name="pass" placeholder="{{ copy.password[_lang] }}" autofocus required></p>
-        <div><p>
-            <p>
-                <input type="checkbox" id="agree" name="agree" required>
-                <label for="agree">{{ copy['data-protection-statement'][_lang] }}</label>
-            </p>
-        </div>
-        <p><a href="//iwgb.org.uk/page/about/data-protection" target="_blank">{{ copy['view-data-protection'][_lang] }}</a></p>
+        {% include 'data-protection.html.twig' %}
         <p><input type="submit" value="{{ copy.next[_lang] }}" class="button"></p>
     </form>
 {% endblock %}
