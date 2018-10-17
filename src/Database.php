@@ -41,22 +41,20 @@ class Database extends PDO {
      * @return bool Success, or not
      */
     public function update($tableName, $params, $primary) {
-        $sql = 'UPDATE :tableName SET';
+        $sql = "UPDATE $tableName SET";
         foreach ($params as $key => $value) {
             $sql = self::appendQuery($sql, "$key = :$key,");
         }
         $sql = substr($sql, 0, -1);
-        $sql = self::appendQuery($sql, "WHERE $primary = :$primary");
-        $q = $this->run($sql, array_merge($params, [
-            'tableName' => $tableName,
-            $primary    => $params[$primary],
-        ]));
+        $sql = self::appendQuery($sql, "WHERE $primary = :primary");
+        echo $sql;
+        $q = $this->run($sql, array_merge($params, ['primary' => $params[$primary]]));
         return (bool) $q->rowCount();
     }
 
     public function insert($tableName, $params) {
         $sql = /** @lang text */
-            'INSERT INTO :tableName (';
+            "INSERT INTO $tableName (";
         foreach ($params as $key => $value) {
             $sql = self::appendQuery($sql, "$key,");
         }
@@ -67,8 +65,7 @@ class Database extends PDO {
         }
         $sql = substr($sql, 0, -1);
         $sql = self::appendQuery($sql, ')');
-        $this->run($sql,
-            array_merge($params, ['tableName' => $tableName]));
+        $this->run($sql, $params);
     }
 
     public function exists($tableName, $primaryKey, $primaryValue) {
@@ -80,6 +77,7 @@ class Database extends PDO {
     }
 
     public function save($tableName, $params, $primary) {
+        print_r($params);
         if ($this->exists($tableName, $primary, $params[$primary])) {
             $this->update($tableName, $params, $primary);
         } else {
@@ -128,7 +126,7 @@ class Database extends PDO {
         return $this->run('SELECT *
             FROM callees
             WHERE id = :id',
-            ['number' => $id]
+            ['id' => $id]
         )->fetchObject('Callee');
     }
 

@@ -33,7 +33,7 @@ class Call {
         $call = new Call();
         $call->db = $db;
         $call->id = uniqid();
-        $call->caller = $caller->email;
+        $call->caller = $caller->id;
         $call->callee = $callee->id;
         $call->answered = $answered;
         $call->notes = $notes;
