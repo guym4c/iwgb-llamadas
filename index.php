@@ -94,6 +94,22 @@ $app->add(new McAskill\Slim\Polyglot\Polyglot($languages));
 
 $app->get('/login', Action\LogIn::class);
 
+$app->post('/login', function (Request $request, Response $response) {
+   $post = $request->getParsedBody();
+   if ($post['agree'] == true && $post['pass'] == Keys::Password) {
+       $_SESSION = ['loginStatus' => true];
+       return $response->withRedirect($post['callback'], 302);
+   } else {
+       return $response->withRedirect('/login?callback=' . $post['callback'], 302);
+   }
+});
+
+$app->get('/logout', function (Request $request, Response $response) {
+    $_SESSION = [];
+    session_destroy();
+    return $response->withRedirect('//iwgb.org.uk', 302);
+});
+
 $app->group('/call', function() {
 
     $this->get('/{campaign}', Action\SelectUser::class);
@@ -104,3 +120,7 @@ $app->group('/call', function() {
 $app->post('/callback', Action\Callback::class);
 
 $app->run();
+
+function isLoggedIn() {
+    return isset($_SESSION['loginStatus']) && $_SESSION['loginStatus'] == true;
+}

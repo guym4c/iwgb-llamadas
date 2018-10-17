@@ -31,11 +31,11 @@ select {
 .content-pad {
 	display: flex;
 	justify-content: center;
-	padding: 10px;
-	width: calc(100% - 20px);
+	padding: 20px 30vw;
+	width: calc(100% - 60vw);
 }
 
-.content-pad > div {
+.content-pad > div, .content-pad > form {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -69,6 +69,11 @@ select {
 	color: $iwgb-red;
 	background-color: #fff;
 	border-radius: 3px;
+	font-weight: 700;
+}
+
+.button:hover {
+	cursor: pointer;
 }
 
 ul {
@@ -94,3 +99,20 @@ ul.languages {
 	}
 }
 
+input {
+  border: none;
+  outline: none;
+  border-bottom: 3px solid #fff;
+  background: none;
+  font-family: inherit;
+  font-size: 1.2em;
+  color: inherit;
+}
+
+@media only screen and (max-width: 700px) {
+
+	.content-pad {
+		padding: 20px;
+		width: calc(100% - 40px);
+	}
+}

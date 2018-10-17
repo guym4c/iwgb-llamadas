@@ -22,6 +22,7 @@
                     {% for language in languages %}
                         <li><a href="/{{ language.value }}{{ uri }}">{{ language.value|upper }}</a></li>
                     {% endfor %}
+                    <li><a href="/logout">{{ copy.logout[_lang] }}</a></li>
                 </ul>
             {% endblock %}
 		</div>

@@ -21,7 +21,7 @@ abstract class GenericAction {
         return $this->view->render($response, $template,
             array_merge($vars, [
                 'copy'      => self::loadJSON('copy'),
-                'uri'       => $request->getUri()->getPath(),
+                'uri'       => $request->getUri()->getPath() . '?' . $request->getUri()->getQuery(),
                 'languages' => \Language::values(),
             ])
         );
