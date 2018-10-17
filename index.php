@@ -110,11 +110,16 @@ $app->get('/logout', function (Request $request, Response $response) {
     return $response->withRedirect('//iwgb.org.uk', 302);
 });
 
-$app->group('/call', function() {
+$app->group('/call/{campaign}', function() {
 
-    $this->get('/{campaign}', Action\SelectUser::class);
+    $this->get('', Action\SelectUser::class);
 
-    $this->get('/{campaign}/{caller}', Action\MakeCall::class);
+    $this->get('/new', Action\NewCaller::class);
+
+    $this->post('/new', Action\CreateCaller::class);
+
+    $this->get('/{caller}', Action\MakeCall::class);
+
 })->add($m_accesscontrol);
 
 $app->post('/callback', Action\Callback::class);
