@@ -2,7 +2,6 @@
 
 namespace Action;
 
-
 abstract class CampaignAction extends GenericAction {
 
     public function render($request, $response, $template, $vars) {

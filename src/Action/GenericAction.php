@@ -26,7 +26,8 @@ abstract class GenericAction {
                     'name' => $this->csrf->getTokenNameKey(),
                     'value'=> $this->csrf->getTokenValueKey(),
                 ],
-                'copy' => self::loadJSON('copy'),
+                'copy'      => self::loadJSON('copy'),
+                'uri'       => $request->getUri()->getPath(),
                 'languages' => \Language::values(),
             ])
         );

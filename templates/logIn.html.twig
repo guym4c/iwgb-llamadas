@@ -4,7 +4,7 @@
 	<div>
 		<h2>{{ copy.identify[_lang] }}</h2>
 		{% for caller in callers %}
-			<p><a href="/call/{{ caller.id }}">{{ caller.name }}</a></p>
+			<p><a href="/{{ campaign }}/{{ caller.id }}">{{ caller.name }}</a></p>
 		{% endfor %}
 	</div>
 {% endblock %}

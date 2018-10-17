@@ -6,11 +6,13 @@ namespace Action;
 class MakeCall extends CampaignAction {
 
     public function __invoke($request, $response, $args) {
+        $callee = $this->db->getNextCallee($args['campaign']);
         return $this->render($request, $response, 'call.html.twig', [
-            'callee'    => $this->db->getNextCallee($args['campaign']),
+            'callee'    => $callee,
             'campaign'  => $args['campaign'],
             'caller'    => $this->db->getCaller($args['caller']),
             'script'    => $this->db->getCampaign($args['campaign'])->script,
+            'calls'     => $this->db->getCalls($callee),
         ]);
     }
 }

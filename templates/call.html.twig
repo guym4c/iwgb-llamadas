@@ -9,7 +9,7 @@
 		</div>
 		{% if calls is defined %}
 			<h2>{{ copy.previous[_lang] }}:</h2>
-			<ul>
+			<ul class="calls">
 				{% for call in calls %}
 					<li>
 						{{ call.timestamp|nicedate }}: 
