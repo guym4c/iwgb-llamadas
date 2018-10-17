@@ -27,12 +27,6 @@ $container['db'] = function ($c) {
     return new Database();
 };
 
-// CSRF
-
-$container['csrf'] = function ($c) {
-    return new Slim\Csrf\Guard;
-};
-
 // Twig
 
 $container['view'] = function ($container) {
@@ -95,7 +89,6 @@ $m_accesscontrol = function ($request, $response, $next) {
 };
 
 $app->add(new McAskill\Slim\Polyglot\Polyglot($languages));
-$app->add($container->get('csrf'));
 
 // Routes
 
