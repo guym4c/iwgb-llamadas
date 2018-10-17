@@ -29,4 +29,23 @@ class Caller {
         return $caller;
     }
 
+    public static function constructCaller(Database $db, $email, $name, $campaign) {
+        $caller = new Caller();
+        $caller->db = $db;
+        $caller->id = uniqid();
+        $caller->email = $email;
+        $caller->name = $name;
+        $caller->campaign = $campaign;
+        return $caller;
+    }
+
+    public function save() {
+        $this->db->save('Callers', [
+            'id'        => $this->id,
+            'email'     => $this->email,
+            'name'      => $this->name,
+            'campaign'  => $this->campaign,
+        ], 'id');
+    }
+
 }
