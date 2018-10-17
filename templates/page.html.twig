@@ -14,6 +14,15 @@
 		</div>
 		<div class="content-pad">
 			{% block content %} {% endblock %}
+        </div>
+        <div class="content-pad">
+            {% block languages %}
+                <ul class="languages">
+                    {% for language in languages %}
+                        <li><a href="/en/{{ uri }}">{{ language.value|upper }}</a></li>
+                    {% endfor %}
+                </ul>
+            {% endblock %}
 		</div>
 	</body>
 </html>

@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 // ---- VARS ----
 
 $md-red: #e74c3c;
@@ -70,5 +72,25 @@ select {
 }
 
 ul {
+	padding: 0;
+}
+
+ul.calls {
 	list-style: none;
 }
+
+ul.languages {
+
+	li {
+		display: inline;
+	}
+
+	li::after {
+		content: " · ";
+	}
+
+	li:last-of-type::after {
+		content: "";
+	}
+}
+
