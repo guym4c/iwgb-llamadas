@@ -3,10 +3,12 @@
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
-require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-spl_autoload_register(function ($class_name) {
-    include __DIR__ . DIRECTORY_SEPARATOR . 'src' . DIRECTORY_SEPARATOR . $class_name . '.php';
+require __DIR__ . '/vendor/autoload.php';
+spl_autoload_register(function ($class) {
+    include __DIR__ . '/src/' . str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
 });
+
+
 
 // setup Slim
 
@@ -88,10 +90,10 @@ $app->add($container->get('csrf'));
 
 // Routes
 
-$app->get('/{campaign}', \Action\LogIn::class);
+$app->get('/{campaign}', Action\LogIn::class);
 
-$app->get('/{campaign}/{caller}', \Action\MakeCall::class);
+$app->get('/{campaign}/{caller}', Action\MakeCall::class);
 
-$app->post('/callback', \Action\Callback::class);
+$app->post('/callback', Action\Callback::class);
 
 $app->run();
