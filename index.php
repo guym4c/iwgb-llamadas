@@ -85,14 +85,28 @@ $languages['callbacks'][] = function ($language) use ($container) {
     $container->view->getEnvironment()->addGlobal('_lang', $language);
 };
 
+$m_accesscontrol = function ($request, $response, $next) {
+    $callback = $request->getUri()->getPath();
+    if ($callback != '/arms/login' && !isLoggedIn()) {
+        return $response->withRedirect("/login?callback=$callback", 302);
+    } else {
+        return $next($request, $response);
+    }
+};
+
 $app->add(new McAskill\Slim\Polyglot\Polyglot($languages));
 $app->add($container->get('csrf'));
 
 // Routes
 
-$app->get('/{campaign}', Action\LogIn::class);
+$app->get('/login', Action\LogIn::class);
 
-$app->get('/{campaign}/{caller}', Action\MakeCall::class);
+$app->group('/call', function() {
+
+    $this->get('/{campaign}', Action\SelectUser::class);
+
+    $this->get('/{campaign}/{caller}', Action\MakeCall::class);
+})->add($m_accesscontrol);
 
 $app->post('/callback', Action\Callback::class);
 
