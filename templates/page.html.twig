@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="/css/style.css">
 		<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet">
+        <title>IWGB Llamadas</title>
 	</head>
 	<body>
 		<div class="nav">
@@ -19,7 +20,7 @@
             {% block languages %}
                 <ul class="languages">
                     {% for language in languages %}
-                        <li><a href="/en/{{ uri }}">{{ language.value|upper }}</a></li>
+                        <li><a href="/{{ language.value }}{{ uri }}">{{ language.value|upper }}</a></li>
                     {% endfor %}
                 </ul>
             {% endblock %}
