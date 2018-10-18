@@ -96,7 +96,7 @@ $app->get('/login', Action\LogIn::class);
 
 $app->post('/login', function (Request $request, Response $response) {
    $post = $request->getParsedBody();
-   if ($post['agree'] == true && $post['pass'] == Keys::Password) {
+   if ($post['agree'] == true && in_array($post['pass'], Keys::Passwords, true)) {
        $_SESSION = ['loginStatus' => true];
        return $response->withRedirect($post['callback'], 302);
    } else {
