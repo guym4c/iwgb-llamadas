@@ -138,9 +138,10 @@ class Database extends PDO {
 
     public function getNextCallee($campaign) {
         return $this->run('SELECT *
-            FROM callees 
+            FROM callees
             WHERE recall = TRUE
-            AND campaign = :campaign',
+            AND campaign = :campaign
+            ORDER BY RAND()',
             ['campaign' => $campaign]
         )->fetchObject('Callee');
     }
