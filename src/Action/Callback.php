@@ -26,6 +26,9 @@ class Callback extends GenericAction {
             $params['notes']);
         $call->save();
 
+        if (empty($params['recall'])) {
+            $params['recall'] == 0;
+        }
         $callee->recall = $params['recall'];
         $callee->save();
 
