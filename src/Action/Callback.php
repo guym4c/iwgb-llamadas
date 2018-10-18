@@ -18,6 +18,7 @@ class Callback extends GenericAction {
             $params[$questions[$i]] = $answers[$i][$answers[$i]['type']];
         }
 
+        if (empty($params['answered'])) $params['answered'] = 0;
         if (empty($params['recall'])) $params['recall'] = 1;
         if (empty($params['notes'])) $params['notes'] = '';
 
