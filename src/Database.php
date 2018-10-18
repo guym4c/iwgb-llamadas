@@ -77,7 +77,6 @@ class Database extends PDO {
     }
 
     public function save($tableName, $params, $primary) {
-        print_r($params);
         if ($this->exists($tableName, $primary, $params[$primary])) {
             $this->update($tableName, $params, $primary);
         } else {
