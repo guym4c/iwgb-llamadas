@@ -47,7 +47,6 @@ class Database extends PDO {
         }
         $sql = substr($sql, 0, -1);
         $sql = self::appendQuery($sql, "WHERE $primary = :primary");
-        echo $sql;
         $q = $this->run($sql, array_merge($params, ['primary' => $params[$primary]]));
         return (bool) $q->rowCount();
     }

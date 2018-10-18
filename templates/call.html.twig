@@ -7,7 +7,7 @@
 			<p>{{ callee.company }}</p>
 			<p><a href="tel:+44{{ callee.number }}">+44{{ callee.number }}</a></p>
 		</div>
-		{% if calls is defined %}
+		{% if calls[0] is defined %}
 			<h2>{{ copy.previous[_lang] }}:</h2>
 			<ul class="calls">
 				{% for call in calls %}

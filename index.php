@@ -31,7 +31,6 @@ $container['db'] = function ($c) {
 
 $container['view'] = function ($container) {
     $templates = __DIR__ . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR;
-//   $cache = __DIR__ . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR;
     $debug = false;
     $debug = true;
     $view = new Slim\Views\Twig($templates, compact('cache', 'debug'));
