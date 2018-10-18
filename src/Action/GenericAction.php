@@ -20,7 +20,7 @@ abstract class GenericAction {
 
     abstract public function __invoke(Request $request, Response $response, $args);
 
-    public function render(\Request $request, \Response $response, $template, $vars) {
+    public function render(Request $request, Response $response, $template, $vars) {
         return $this->view->render($response, $template,
             array_merge($vars, [
                 'copy'      => self::loadJSON('copy'),
@@ -30,7 +30,7 @@ abstract class GenericAction {
         );
     }
 
-    protected function notFound(\Request $request, \Response $response) {
+    protected function notFound(Request $request, Response $response) {
         return ($this->notFoundHandler)($request, $response);
     }
 
