@@ -6,6 +6,6 @@
 		{% for caller in callers %}
 			<p><a href="/call/{{ campaign }}/{{ caller.id }}">{{ caller.name }}</a></p>
 		{% endfor %}
-		<p><a class="button" href="/call/{{ campaign }}/new">I'm new</a></p>
+		<p><a class="button" href="/call/{{ campaign }}/new">{{ copy['im-new'][_lang] }}</a></p>
 	</div>
 {% endblock %}

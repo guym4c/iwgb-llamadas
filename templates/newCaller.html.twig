@@ -2,8 +2,8 @@
 
 {% block content %}
     <form action="/call/{{ campaign }}/new" method="post">
-        <p><input name="name" placeholder="Name" required autofocus></p>
-        <p><input name="email" type="email" placeholder="Email" required></p>
+        <p><input name="name" placeholder="{{ copy.name[_lang] }}" required autofocus></p>
+        <p><input name="email" type="email" placeholder="{{ copy.email[_lang] }}" required></p>
         {% include 'data-protection.html.twig' %}
         <p><input type="submit" value="{{ copy.next[_lang] }}" class="button"></p>
     </form>
