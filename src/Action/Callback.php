@@ -2,9 +2,12 @@
 
 namespace Action;
 
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
+
 class Callback extends GenericAction {
 
-    public function __invoke(\Request $request, \Response $response, $args) {
+    public function __invoke(Request $request, Response $response, $args) {
         $json = $request->getParsedBody();
         if ($json['event_type'] != 'form_response') return $this->notFound($request, $response);
         $params = $json['form_response']['hidden'];

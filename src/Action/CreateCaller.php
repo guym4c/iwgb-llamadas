@@ -2,11 +2,14 @@
 
 namespace Action;
 
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
+
 class CreateCaller extends CampaignAction {
 
     const NOTIFICATION_EMAIL_SUBJECT = 'New IWGB Llamadas User';
 
-    public function __invoke(\Request $request, \Response $response, $args) {
+    public function __invoke(Request $request, Response $response, $args) {
         $post = $request->getParsedBody();
         if (empty($post['name']) || empty($post['email']) || empty($post['agree'])) {
             return $this->notFound($request, $response);

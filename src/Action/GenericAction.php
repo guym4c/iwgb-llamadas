@@ -2,6 +2,9 @@
 
 namespace Action;
 
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Psr\Http\Message\ResponseInterface as Response;
+
 abstract class GenericAction {
 
     protected $view;
@@ -15,7 +18,7 @@ abstract class GenericAction {
         $this->notFoundHandler = $container->notFoundHandler;
     }
 
-    abstract public function __invoke(\Request $request, \Response $response, $args);
+    abstract public function __invoke(Request $request, Response $response, $args);
 
     public function render(\Request $request, \Response $response, $template, $vars) {
         return $this->view->render($response, $template,
