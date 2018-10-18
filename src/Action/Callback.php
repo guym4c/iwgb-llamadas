@@ -18,6 +18,9 @@ class Callback extends GenericAction {
             $params[$questions[$i]] = $answers[$i][$answers[$i]['type']];
         }
 
+        if (empty($params['recall'])) $params['recall'] = 1;
+        if (empty($params['notes'])) $params['notes'] = '';
+
         $callee = \Callee::constructFromId($this->db, $params['callee']);
         $call = \Call::constructCall($this->db,
             \Caller::constructFromId($this->db, $params['caller']),
@@ -26,9 +29,6 @@ class Callback extends GenericAction {
             $params['notes']);
         $call->save();
 
-        if (empty($params['recall'])) {
-            $params['recall'] == 1;
-        }
         $callee->recall = $params['recall'];
         $callee->save();
 
