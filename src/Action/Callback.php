@@ -4,7 +4,7 @@ namespace Action;
 
 class Callback extends GenericAction {
 
-    public function __invoke($request, $response, $args) {
+    public function __invoke(\Request $request, \Response $response, $args) {
         $json = $request->getParsedBody();
         if ($json['event_type'] != 'form_response') return $this->notFound($request, $response);
         $params = $json['form_response']['hidden'];
@@ -26,7 +26,7 @@ class Callback extends GenericAction {
         $callee->recall = $params['recall'];
         $callee->save();
 
-        return $response;
+        return $response->withStatus(200);
 
     }
 }

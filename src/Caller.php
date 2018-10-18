@@ -40,7 +40,7 @@ class Caller {
     }
 
     public function save() {
-        $this->db->save('Callers', [
+        $this->db->save('callers', [
             'id'        => $this->id,
             'email'     => $this->email,
             'name'      => $this->name,

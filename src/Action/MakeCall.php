@@ -5,7 +5,7 @@ namespace Action;
 
 class MakeCall extends CampaignAction {
 
-    public function __invoke($request, $response, $args) {
+    public function __invoke(\Request $request, \Response $response, $args) {
         $callee = $this->db->getNextCallee($args['campaign']);
         return $this->render($request, $response, 'call.html.twig', [
             'callee'    => $callee,
