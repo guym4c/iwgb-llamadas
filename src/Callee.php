@@ -13,6 +13,7 @@ class Callee {
     public $company;
     public $campaign;
     public $recall;
+    public $attending;
 
     public $db;
 
@@ -36,6 +37,7 @@ class Callee {
             'company'   => $this->company,
             'campaign'  => $this->campaign,
             'recall'    => $this->recall,
+            'attending' => $this->attending,
         ], 'id');
     }
 }

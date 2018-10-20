@@ -12,7 +12,7 @@ class Callback extends GenericAction {
         if ($json['event_type'] != 'form_response') return $this->notFound($request, $response);
         $params = $json['form_response']['hidden'];
         $answers = $json['form_response']['answers'];
-        $questions = ['answered', 'recall', 'notes'];
+        $questions = ['answered', 'recall', 'attending', 'notes'];
 
         for ($i = 0; $i < count($answers); $i++) {
             $params[$questions[$i]] = $answers[$i][$answers[$i]['type']];
@@ -20,6 +20,7 @@ class Callback extends GenericAction {
 
         if (empty($params['answered'])) $params['answered'] = 0;
         if (empty($params['recall'])) $params['recall'] = 1;
+        if (empty($params['attending'])) $params['attending'] = 0;
         if (empty($params['notes'])) $params['notes'] = '';
 
         $callee = \Callee::constructFromId($this->db, $params['callee']);
@@ -31,6 +32,7 @@ class Callback extends GenericAction {
         $call->save();
 
         $callee->recall = $params['recall'];
+        $callee->attending = $params['attending'];
         $callee->save();
 
         return $response->withStatus(200);
