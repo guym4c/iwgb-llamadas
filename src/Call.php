@@ -29,7 +29,7 @@ class Call {
      * @param string $notes
      * @return Call
      */
-    public static function constructCall(Database $db, Caller $caller, Callee $callee, bool $answered, string $notes) {
+    public static function constructCall(Database $db, Caller $caller, Callee $callee, $answered, $notes) {
         $call = new Call();
         $call->db = $db;
         $call->id = uniqid();
@@ -41,6 +41,7 @@ class Call {
     }
 
     public function save() {
+
         $this->db->save('calls', [
                 'id'        => $this->id,
                 'caller'    => $this->caller,
