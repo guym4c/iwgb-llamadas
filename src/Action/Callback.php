@@ -12,10 +12,9 @@ class Callback extends GenericAction {
         if ($json['event_type'] != 'form_response') return $this->notFound($request, $response);
         $params = $json['form_response']['hidden'];
         $answers = $json['form_response']['answers'];
-        $questions = ['answered', 'recall', 'attending', 'notes'];
 
         for ($i = 0; $i < count($answers); $i++) {
-            $params[$questions[$i]] = $answers[$i][$answers[$i]['type']];
+            $params[$answers[$i]['field']['ref']] = $answers[$i][$answers[$i]['type']];
         }
 
         if (empty($params['answered'])) $params['answered'] = 0;
